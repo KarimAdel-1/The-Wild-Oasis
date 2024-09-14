@@ -1,4 +1,4 @@
-#🏨 The Wild Oasis - Hotel Management System
+# 🏨 The Wild Oasis - Hotel Management System
 
 This project is an internal application built for **The Wild Oasis**, a small boutique hotel featuring eight luxurious wooden cabins. The app is designed to help hotel staff manage all hotel operations, including bookings, cabins, guests, and check-ins/check-outs. It is also the back office management tool for the hotel, eventually working alongside a future customer-facing website for bookings.
 
