@@ -1,6 +1,6 @@
 # 🏨 The Wild Oasis - Hotel Management System
 
-This project is an internal application built for **The Wild Oasis**, a small boutique hotel featuring eight luxurious wooden cabins. The app is designed to help hotel staff manage all hotel operations, including bookings, cabins, guests, and check-ins/check-outs. It is also the back office management tool for the hotel, eventually working alongside a future customer-facing website for bookings.
+This project is an internal application built for **The Wild Oasis**, a small boutique hotel featuring eight luxurious wooden cabins. The app is designed to help hotel staff manage all hotel operations, including bookings, cabins, guests, and check-ins/check-outs. It is also the back-office management tool for the hotel, eventually working alongside a future customer-facing website for bookings.
 
 ## Table of Contents
 
@@ -14,36 +14,44 @@ This project is an internal application built for **The Wild Oasis**, a small bo
 ## Features
 
 ### Authentication
+
 - User login and signup.
 - User account management by hotel staff.
 
 ### Cabins Management
+
 - View and manage (edit/delete) cabins.
 - Add new cabins.
 
 ### Bookings Management
+
 - View current, past, and future bookings.
 - Add and manage bookings.
 
 ### Check-In and Check-Out
+
 - Hotel staff can check guests in and out using the booking ID.
 
 ### Guest Management
+
 - Display guest details.
 - Manage guest stays and details during their visit.
 
 ### Dashboard
+
 - View various statistics and charts related to hotel operations.
 - Data visualization with charts for booking trends, guest information, and revenue statistics.
 
 ### Settings
+
 - Hotel staff can update settings, user profiles, and preferences.
-  
+
 ## Technology Stack
 
 This application is built using modern web technologies and popular libraries to create a seamless user experience for the hotel staff.
 
 ### Frontend
+
 - **React**: Core framework for building user interfaces.
 - **React Router**: For handling routing and navigation.
 - **Styled Components**: Styling solution, writing CSS directly within JavaScript components.
@@ -56,6 +64,7 @@ This application is built using modern web technologies and popular libraries to
 - **date-fns**: A lightweight date utility library for date manipulation.
 
 ### Backend
+
 - **Supabase**: Used for building the backend API and managing remote data.
 
 ## Pages
@@ -75,23 +84,31 @@ The application is divided into the following key pages for hotel management:
 To get started with this project, follow the steps below:
 
 ### Prerequisites
+
 - Node.js and npm/yarn installed.
 - Supabase account for backend setup.
 
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/KarimAdel-1/The-Wild-Oasis.git
    cd The-Wild-Oasis
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
-3. Create a `.env` file and add the necessary Supabase credentials for backend integration.
+3. Create a `.env` file in the root directory and add the following Supabase credentials:
+
+   ```
+   SUPABASE_URL='your-supabase-url'
+   SUPABASE_KEY='your-supabase-key'
+   ```
 
 4. Start the development server:
    ```bash
