@@ -106,8 +106,8 @@ To get started with this project, follow the steps below:
 3. Create a `.env` file in the root directory and add the following Supabase credentials:
 
    ```
-   SUPABASE_URL='your-supabase-url'
-   SUPABASE_KEY='your-supabase-key'
+   VITE_SUPABASE_URL='your-supabase-url'
+   VITE_SUPABASE_KEY='your-supabase-key'
    ```
 
 4. Start the development server:
