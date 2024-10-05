@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import Spinner from '../../ui/Spinner';
 import CabinRow from './CabinRow';
-
 import { useCabins } from './useCabins';
 
 const Table = styled.div`
@@ -29,9 +28,8 @@ const TableHeader = styled.header`
   padding: 1.6rem 2.4rem;
 `;
 
-const CabinTable = () => {
-  // Fetch cabin data using a custom query
-  const { isLoading, cabins, error } = useCabins();
+function CabinTable() {
+  const { isLoading, cabins } = useCabins();
 
   if (isLoading) return <Spinner />;
 
@@ -46,11 +44,10 @@ const CabinTable = () => {
         <div></div>
       </TableHeader>
       {cabins.map((cabin) => (
-        <CabinRow key={cabin.id} cabin={cabin}></CabinRow>
+        <CabinRow cabin={cabin} key={cabin.id} />
       ))}
-      {error && <div>Error fetching cabin data: {error.message}</div>}
     </Table>
   );
-};
+}
 
 export default CabinTable;

@@ -1,3 +1,5 @@
+import { useForm } from 'react-hook-form';
+
 import Input from '../../ui/Input';
 import Form from '../../ui/Form';
 import Button from '../../ui/Button';
@@ -5,44 +7,47 @@ import FileInput from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
 import FormRow from '../../ui/FormRow';
 
-import { useForm } from 'react-hook-form';
 import { useCreateCabin } from './useCreateCabin';
 import { useEditCabin } from './useEditCabin';
 
 function CreateCabinForm({ cabinToEdit = {} }) {
-
   const { isCreating, createCabin } = useCreateCabin();
   const { isEditing, editCabin } = useEditCabin();
   const isWorking = isCreating || isEditing;
 
-
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
-
 
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: isEditSession ? editValues : {},
   });
-
   const { errors } = formState;
 
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
 
-    if (isEditSession) {
+    if (isEditSession)
       editCabin(
         { newCabinData: { ...data, image }, id: editId },
         {
-          onSuccess: (data) => reset(),
+          onSuccess: (data) => {
+            reset();
+          },
         }
       );
-    } else {
-      createCabin({ ...data, image: image }, { onSucess: (data) => reset() });
-    }
+    else
+      createCabin(
+        { ...data, image: image },
+        {
+          onSuccess: (data) => {
+            reset();
+          },
+        }
+      );
   }
 
-  function onError(error) {
-    // console.error(error);
+  function onError(errors) {
+    // console.log(errors);
   }
 
   return (
@@ -53,11 +58,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           id="name"
           disabled={isWorking}
           {...register('name', {
-            required: 'Please enter a cabin name',
-            minLength: {
-              value: 3,
-              message: 'Cabin name should be at least 3 characters long',
-            },
+            required: 'This field is required',
           })}
         />
       </FormRow>
@@ -69,9 +70,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           disabled={isWorking}
           {...register('maxCapacity', {
             required: 'This field is required',
-            minLength: {
+            min: {
               value: 1,
-              message: 'Cabin capacity should be at least 1',
+              message: 'Capacity should be at least 1',
             },
           })}
         />
@@ -84,9 +85,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           disabled={isWorking}
           {...register('regularPrice', {
             required: 'This field is required',
-            minLength: {
+            min: {
               value: 1,
-              message: 'Cabin price should be at least 1',
+              message: 'Capacity should be at least 1',
             },
           })}
         />
@@ -100,10 +101,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           defaultValue={0}
           {...register('discount', {
             required: 'This field is required',
-            validate: (value) => {
+            validate: (value) =>
               value <= getValues().regularPrice ||
-                'Discount should be less than or equal to regular price';
-            },
+              'Discount should be less than regular price',
           })}
         />
       </FormRow>
@@ -115,9 +115,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Textarea
           type="number"
           id="description"
-          disabled={isWorking}
           defaultValue=""
-          {...register('description', { required: 'This field is required' })}
+          disabled={isWorking}
+          {...register('description', {
+            required: 'This field is required',
+          })}
         />
       </FormRow>
 
@@ -125,7 +127,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <FileInput
           id="image"
           accept="image/*"
-          type="file"
           {...register('image', {
             required: isEditSession ? false : 'This field is required',
           })}
@@ -138,7 +139,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isEditSession ? 'Edit Cabin' : 'Create new cabin'}
+          {isEditSession ? 'Edit cabin' : 'Create new cabin'}
         </Button>
       </FormRow>
     </Form>
